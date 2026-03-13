@@ -83,7 +83,7 @@ export function StudyPage({ title, sections, formatExample }: StudyPageProps) {
   };
 
   return (
-    <main className="mx-auto flex min-h-screen max-w-8xl flex-col justify-center gap-8 px-4 py-8 md:px-8 lg:flex-row lg:items-center">
+    <main className="mx-auto flex min-h-screen flex-col justify-center gap-8 px-4 py-8 md:px-8 lg:flex-row lg:items-center">
       <section className="w-full rounded-[2rem] border border-stone-200/80 bg-white/90 p-6 shadow-card backdrop-blur md:p-8 lg:w-[min(64rem,62vw)]">
         <div className="mb-8 flex flex-col gap-4 border-b border-stone-200 pb-6 md:flex-row md:items-end md:justify-between">
           <div>
@@ -152,6 +152,7 @@ export function StudyPage({ title, sections, formatExample }: StudyPageProps) {
 
                         const id = `${sectionIndex}-${itemIndex}-${tokenIndex}`;
                         const isRevealed = revealedIds.has(id);
+                        const buttonWidth = `calc(${Math.max(token.value.trim().length, 3)}em + 2rem)`;
 
                         return (
                           <button
@@ -159,7 +160,7 @@ export function StudyPage({ title, sections, formatExample }: StudyPageProps) {
                             type="button"
                             onClick={() => toggleReveal(id)}
                             className={[
-                              "mx-2 inline-flex min-w-24 items-center justify-center rounded-2xl border px-4 py-1 align-middle text-center text-base font-semibold transition",
+                              "mx-2 inline-flex h-10 items-center justify-center rounded-2xl border px-3 py-0 align-middle text-center text-base font-semibold leading-none transition",
                               isRevealed
                                 ? "border-amber-300 bg-amber-50 text-amber-900"
                                 : "border-dashed border-stone-400 bg-stone-200 text-stone-700 hover:border-amber-500 hover:text-amber-700",
@@ -167,6 +168,7 @@ export function StudyPage({ title, sections, formatExample }: StudyPageProps) {
                             aria-label={
                               isRevealed ? "解答を隠す" : "解答を表示する"
                             }
+                            style={{ width: buttonWidth }}
                           >
                             {isRevealed ? token.value : "???"}
                           </button>
